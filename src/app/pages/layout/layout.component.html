@@ -14,20 +14,13 @@
     <hr />
     <section class="main">
       <div class="nav-item">
-        <span class="material-symbols-rounded"> home </span>
-        <span class="nav-text">Dashboard</span>
+        <a class="nav-text" routerLink="/dashboard">Dashboard</a>
       </div>
       <div class="nav-item">
-        <span class="material-symbols-rounded"> person </span>
-        <span class="nav-text">Audience</span>
+        <a class="nav-text" routerLink="/employee">Employee</a>
       </div>
       <div class="nav-item">
-        <span class="material-symbols-rounded"> article </span>
-        <span class="nav-text">Posts</span>
-      </div>
-      <div class="nav-item current">
-        <span class="material-symbols-rounded"> calendar_month </span>
-        <span class="nav-text">Schedules</span>
+        <a class="nav-text" routerLink="/project">Projects</a>
       </div>
     </section>
     <hr />
@@ -49,7 +42,7 @@
       <span class="material-symbols-outlined"> chevron_left </span>
     </button>
   </nav>
-  <main>
+  <main class="ms-4 me-4 w-100">
     <router-outlet></router-outlet>
   </main>
 </div>

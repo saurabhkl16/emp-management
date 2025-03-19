@@ -1,0 +1,20 @@
+.dropdown {
+  width: 100%;
+}
+
+.new-employee {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  row-gap: 20px;
+  column-gap: 20px;
+}
+
+.table-wrapper {
+  max-height: 320px; /* ✅ Apply height to wrapper */
+  overflow-y: auto; /* ✅ Enables vertical scrolling */
+}
+
+.employe-table {
+  width: 100%;
+  border-collapse: collapse; /* ✅ Ensures proper layout */
+}

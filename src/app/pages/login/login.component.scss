@@ -102,14 +102,14 @@ input {
   cursor: pointer;
 }
 
-@media screen and (max-width: 750px) {
-  .container {
-    width: 350px;
-  }
-  .bg {
-    display: none;
-  }
-  form {
-    display: 100%;
-  }
-}
+// @media screen and (max-width: 100vh) {
+//   .container {
+//     width: 350px;
+//   }
+//   .bg {
+//     display: none;
+//   }
+//   form {
+//     display: 100%;
+//   }
+// }

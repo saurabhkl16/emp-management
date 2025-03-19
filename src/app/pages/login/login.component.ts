@@ -12,8 +12,8 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent {
   public loginObj: any = {
-    username: '',
-    password: '',
+    username: 'hradmin@gmail.com',
+    password: '112233',
   };
 
   public http = inject(HttpClient); // In angular 16 new way

@@ -1,1 +1,189 @@
-<p>employee works!</p>
+<div class="card mt-5 w-100">
+  <div class="card-header d-flex justify-content-between">
+    <h4>Employee Portal</h4>
+    <button class="btn btn-primary" (click)="visibleEmployeeForm()">Add Employee</button>
+  </div>
+  <div class="card-body">
+    <div class="employee-portal">
+      <!-- ✅ Added a div wrapper with scrolling -->
+      <div class="table-wrapper">
+        <table class="table employe-table">
+          <thead>
+            <tr>
+              <th scope="col">Employee Id</th>
+              <th scope="col">Name</th>
+              <th scope="col">Contract No</th>
+              <th scope="col">Department</th>
+              <th scope="col">Role</th>
+              <th scope="col">Gender</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody *ngFor="let item of employeeList">
+            <tr>
+              <th scope="row">{{ item.employeeId }}</th>
+              <td>{{ item.employeeName }}</td>
+              <td>{{ item.contactNo }}</td>
+              <td>{{ item.employeeId }}</td>
+              <td>{{ item.role }}</td>
+              <td>{{ item.gender }}</td>
+              <td>
+                <button
+                  class="btn btn-warning btn-sm me-2"
+                  (click)="editEmployee(item)"
+                >
+                  <i class="bi bi-pencil-square"></i>
+                </button>
+                <button
+                  class="btn btn-danger btn-sm"
+                  (click)="deleteEmployee(item.employeeId)"
+                >
+                  <i class="bi bi-trash"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="card mt-5 w-100" *ngIf="showEmployeeForm()">
+  <div class="card-header d-flex justify-content-between">
+    <h4>New Employee</h4>
+    <button class="btn btn-primary" (click)="hideEmployeeForm()">Close</button>
+  </div>
+  <div class="card-body">
+    <div class="new-employee">
+      <div class="emp-name mb-3">
+        <label for="employee-name">Employee Name</label>
+        <input
+          type="text"
+          name="employee-name"
+          class="form-control"
+          [(ngModel)]="employeeObj.employeeName"
+        />
+      </div>
+      <div class="contact-number mb-3">
+        <label for="employee-number">Employee Number</label>
+        <input
+          type="text"
+          name="employee-number"
+          class="form-control"
+          [(ngModel)]="employeeObj.contactNo"
+        />
+      </div>
+      <div class="emp-email mb-3">
+        <label for="employee-email">Employee Email</label>
+        <input
+          type="text"
+          name="employee-email"
+          class="form-control"
+          [(ngModel)]="employeeObj.emailId"
+        />
+      </div>
+      <div class="parent-department mb-3">
+        <div class="input-group dropdown">
+          <label for="employee-email">Parent Department</label>
+          <select
+            class="form-select w-100 p-1.5"
+            id="inputGroupSelect01"
+            name="deptId"
+            [(ngModel)]="deptId"
+            (change)="onParentDeptChange()"
+          >
+            <option selected>Choose...</option>
+            <option
+              *ngFor="let option of parentDeptList; let i = index"
+              [value]="option.departmentId"
+            >
+              {{ option.departmentName }}
+            </option>
+          </select>
+        </div>
+      </div>
+      <div class="child-department mb-3">
+        <div class="input-group dropdown">
+          <label for="employee-email">Child Department</label>
+          <select
+            class="form-select w-100 p-1.5"
+            id="inputGroupSelect01"
+            name="deptId"
+            [disabled]="childDeptList.length === 0"
+          >
+            <option selected>Choose...</option>
+            <option
+              *ngFor="let option of childDeptList; let i = index"
+              [value]="option.departmentId"
+            >
+              {{ option.departmentName }}
+            </option>
+          </select>
+        </div>
+      </div>
+      <div class="emp-password mb-3">
+        <label for="employee-password">Password</label>
+        <input
+          type="text"
+          name="employee-password"
+          class="form-control"
+          [(ngModel)]="employeeObj.password"
+        />
+      </div>
+
+      <div class="gender mb-3 d-flex">
+        <label class="me-4"><strong>Gender</strong></label>
+        <div class="form-check me-4">
+          <input
+            type="radio"
+            id="male"
+            name="gender"
+            value="Male"
+            class="form-check-input"
+            [(ngModel)]="employeeObj.gender"
+          />
+          <label class="form-check-label" for="male">Male</label>
+        </div>
+        <div class="form-check me-4">
+          <input
+            type="radio"
+            id="female"
+            name="gender"
+            value="Female"
+            class="form-check-input"
+            [(ngModel)]="employeeObj.gender"
+          />
+          <label class="form-check-label" for="female">Female</label>
+        </div>
+        <div class="form-check me-4">
+          <input
+            type="radio"
+            id="other"
+            name="gender"
+            value="Other"
+            class="form-check-input"
+            [(ngModel)]="employeeObj.gender"
+          />
+          <label class="form-check-label" for="other">Other</label>
+        </div>
+      </div>
+
+      <div class="text-end">
+        <button
+          *ngIf="employeeObj.employeeId === 0"
+          class="btn btn-success w-25"
+          (click)="createEmploye()"
+        >
+          Submit
+        </button>
+        <button
+          *ngIf="employeeObj.employeeId != 0"
+          class="btn btn-success w-25"
+          (click)="updateEmployeDetails()"
+        >
+          Update
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

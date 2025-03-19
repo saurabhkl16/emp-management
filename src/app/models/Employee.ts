@@ -1,12 +1,12 @@
 export class Employee {
   employeeId: number;
-  employeeName: String;
-  contactNo: String;
-  emailId: String;
+  employeeName: string;
+  contactNo: string;
+  emailId: string;
   deptId: number;
-  password: String;
-  gender: String;
-  role: String;
+  password: string;
+  gender: string;
+  role: string;
   createdDate: Date;
 
   constructor() {
@@ -17,7 +17,25 @@ export class Employee {
     this.deptId = 0;
     this.password = '';
     this.gender = '';
-    this.role = '';
+    this.role = 'Employee';
     this.createdDate = new Date();
   }
+}
+
+export interface IParentDept {
+  departmentId: string;
+  departmentName: string;
+  departmentLogo: string;
+}
+
+export interface IChildDept {
+  childDeptId: number;
+  parentDeptId: number;
+  departmentName: string;
+}
+
+export interface MyApiResponse {
+  message: string;
+  result: boolean;
+  data: any;
 }
