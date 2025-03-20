@@ -1,1 +1,135 @@
-<p>project works!</p>
+<div class="card mt-5 w-100" *ngIf="currentView === 'list'">
+  <div class="card-header bg-primary d-flex justify-content-between">
+    <h4>Employee Portal</h4>
+    <button class="btn btn-dark" (click)="currentView = 'form'">
+      Create Project
+    </button>
+  </div>
+  <div class="card-body">
+    <div class="employee-portal">
+      <!-- ✅ Added a div wrapper with scrolling -->
+      <div class="table-wrapper">
+        <table class="table employe-table">
+          <thead>
+            <tr>
+              <th scope="col">Project Id</th>
+              <th scope="col">Project Name</th>
+              <th scope="col">Client Name</th>
+              <th scope="col">Start Date</th>
+              <th scope="col">Lead By</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody *ngFor="let item of projectList">
+            <tr>
+              <th scope="row">{{ item.projectId }}</th>
+              <td>{{ item.projectName }}</td>
+              <!-- <td>{{ item.contactNo }}</td> -->
+              <td>{{ item.clientName }}</td>
+              <td>{{ item.startDate | date }}</td>
+              <td>{{ item.leadByEmpId }}</td>
+              <td>
+                <button class="btn btn-warning btn-sm me-2" (click)="editProject(item)">
+                  <i class="bi bi-pencil-square"></i>
+                </button>
+                <button class="btn btn-danger btn-sm" (click)="deleteProjectt(item.leadByEmpId)">
+                  <i class="bi bi-trash"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="card mt-5 w-100" *ngIf="currentView !== 'list'">
+  <div class="card-header bg-primary d-flex justify-content-between">
+    <h4>New Employee</h4>
+    <button class="btn btn-dark" (click)="currentView = 'list'">Close</button>
+  </div>
+  <div class="card-body">
+    <form
+      class="new-project"
+      [formGroup]="projectForm"
+      (ngSubmit)="saveProject()"
+    >
+      <div class="project-name mb-3">
+        <label for="employee-name">Project Name</label>
+        <input
+          type="text"
+          name="project-name"
+          formControlName="projectName"
+          class="form-control"
+        />
+      </div>
+      <div class="client-name mb-3">
+        <label for="client-name">Client Name</label>
+        <input
+          type="text"
+          name="client-name"
+          formControlName="clientName"
+          class="form-control"
+        />
+      </div>
+      <div class="start-date mb-3">
+        <label for="start-date">Start Date</label>
+        <input
+          type="date"
+          name="start-date"
+          formControlName="startDate"
+          class="form-control"
+        />
+      </div>
+      <div class="lead-by-employee mb-3">
+        <div class="input-group dropdown">
+          <label for="lead-by">Lead By</label>
+          <select
+            class="form-select w-100 p-1.5"
+            id="inputGroupSelect01"
+            name="lead-by"
+            formControlName="leadByEmpId"
+          >
+            <option selected>Choose...</option>
+            <option
+              *ngFor="let option of employeeData$ | async"
+              [value]="option.employeeId"
+            >
+              {{ option.employeeName }}
+            </option>
+          </select>
+        </div>
+      </div>
+      <div class="contact-person mb-3">
+        <label for="contact-person">Contact Person</label>
+        <input
+          type="text"
+          name="contact-person"
+          formControlName="contactPerson"
+          class="form-control"
+        />
+      </div>
+      <div class="contact-number mb-3">
+        <label for="contact-number">Contact Number</label>
+        <input
+          type="text"
+          name="contact-number"
+          formControlName="contactNo"
+          class="form-control"
+        />
+      </div>
+      <div class="email-id mb-3">
+        <label for="email-id">Email Id</label>
+        <input
+          type="text"
+          name="email-id"
+          formControlName="emailId"
+          class="form-control"
+        />
+      </div>
+      <div class="text-end">
+        <button class="btn btn-success" type="submit">Submit</button>
+      </div>
+    </form>
+  </div>
+</div>

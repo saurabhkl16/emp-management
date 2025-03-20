@@ -33,17 +33,14 @@ export class EmployeeComponent implements OnInit {
   public getParentDepList() {
     this.masterService.getParentDept().subscribe((res: MyApiResponse) => {
       // MyApiResponse add this in service function also
-      console.log(res.data);
       this.parentDeptList = res.data;
     });
   }
 
   public onParentDeptChange() {
-    console.log(this.employeeObj);
     this.masterService
       .getChildDeptUsingParentId(this.deptId)
       .subscribe((res: MyApiResponse) => {
-        console.log(res.data);
         this.childDeptList = res.data;
       });
   }
@@ -63,7 +60,6 @@ export class EmployeeComponent implements OnInit {
 
   public getEmployeeList() {
     this.employeeService.getEmployees().subscribe((res: any) => {
-      console.log('res', res);
       this.employeeList = res;
     });
   }

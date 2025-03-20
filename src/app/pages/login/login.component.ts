@@ -29,7 +29,6 @@ export class LoginComponent {
         this.loginObj
       )
       .subscribe((res: any) => {
-        console.log(res);
         if (res.result) {
           localStorage.setItem('superAdmin', JSON.stringify(res.data));
           this.router.navigateByUrl('dashboard');
